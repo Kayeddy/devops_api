@@ -21,13 +21,7 @@ describe('User Model Test', () => {
 
   it('should fail to save user without required fields', async () => {
     const userWithoutRequiredField = new User({ name: 'John Doe' });
-    let err;
-    try {
-      await userWithoutRequiredField.save();
-    } catch (error) {
-      err = error;
-    }
-    expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
+    await expect(userWithoutRequiredField.save()).rejects.toThrow(mongoose.Error.ValidationError);
   });
 
   it('should fail to save user with invalid email', async () => {
@@ -35,12 +29,6 @@ describe('User Model Test', () => {
       name: 'John Doe',
       email: 'invalid-email'
     });
-    let err;
-    try {
-      await userWithInvalidEmail.save();
-    } catch (error) {
-      err = error;
-    }
-    expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
+    await expect(userWithInvalidEmail.save()).rejects.toThrow(mongoose.Error.ValidationError);
   });
 }); 

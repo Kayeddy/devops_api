@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2024-03-10
+
+### Fixed
+- Fixed User model validation tests
+- Updated Jest configuration to exclude test helpers
+- Improved test assertions for better error handling
+- Updated test coverage thresholds to 85%
+
 ## [1.1.1] - 2024-03-10
 
 ### Fixed

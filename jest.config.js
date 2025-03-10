@@ -7,20 +7,26 @@ module.exports = {
     '**/__tests__/**/*.+(ts|tsx|js)',
     '**/?(*.)+(spec|test).+(ts|tsx|js)'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/',
+    '/__tests__/helpers/'
+  ],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   coverageThreshold: {
     global: {
-      branches: 60,
-      functions: 60,
-      lines: 60,
-      statements: 60
+      branches: 85,
+      functions: 85,
+      lines: 85,
+      statements: 85
     }
   },
   coveragePathIgnorePatterns: [
     '/node_modules/',
-    '/dist/'
+    '/dist/',
+    '/__tests__/helpers/'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
 }; 
