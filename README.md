@@ -1,13 +1,13 @@
-<<<<<<< HEAD
 # DevOps API
 
-A TypeScript-based REST API for managing users, bikes, and cars with full CI/CD pipeline integration.
+A TypeScript-based REST API for managing users, bikes, and cars with full CI/CD pipeline integration and Docker support.
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
 - MongoDB (running locally or accessible URL)
-- Docker (for containerized deployment)
+- Docker and Docker Compose
+- Git
 
 ## Installation
 
@@ -42,20 +42,38 @@ Watch mode for development:
 npm run test:watch
 ```
 
-## Production
+## Docker Support
 
-To build and run the application in production:
+The application includes multi-stage Docker builds for different environments:
+- Builder stage: Compiles TypeScript code
+- Test stage: Runs tests with full dependencies
+- Production stage: Minimal image with only production dependencies
 
+### Running with Docker Compose
+
+1. Test Environment:
 ```bash
-npm run build
-npm start
+# Build and run tests
+docker-compose build test
+docker-compose run test
 ```
 
-### Docker
-
-Build the Docker image:
+2. Production Environment:
 ```bash
-docker build -t devops-api .
+# Build and run the API
+docker-compose up api
+```
+
+3. Stop all services:
+```bash
+docker-compose down
+```
+
+### Manual Docker Commands
+
+Build the production image:
+```bash
+docker build -t devops-api --target production .
 ```
 
 Run the container:
@@ -67,16 +85,16 @@ docker run -p 3000:3000 --env-file .env devops-api
 
 This project uses GitHub Actions for continuous integration and deployment.
 
-### CI Pipeline
-- Triggers on push to main and pull requests
-- Runs tests with 60% coverage threshold
+### CI Pipeline (on push to main and pull requests)
+- Runs tests in Docker environment
+- Validates test coverage (minimum 60%)
 - Builds Docker image
 - Pushes to GitHub Container Registry
 
-### CD Pipeline
-- Triggers on version tags (v*)
-- Runs tests with 85% coverage threshold
-- Builds and pushes Docker image with version tag
+### CD Pipeline (on version tags)
+- Runs tests with stricter coverage (minimum 85%)
+- Builds production Docker image
+- Pushes to GitHub Container Registry with version tag
 - Updates latest tag
 
 ### Version Control
@@ -87,6 +105,26 @@ To create a new release:
 ```bash
 git tag v1.x.x
 git push origin v1.x.x
+```
+
+## Project Structure
+
+```
+.
+├── src/
+│   ├── __tests__/        # Test files
+│   ├── config/           # Configuration files
+│   ├── controllers/      # Route controllers
+│   ├── models/          # Database models
+│   ├── routes/          # API routes
+│   └── app.ts           # Main application file
+├── .env                 # Environment variables
+├── .gitignore          # Git ignore file
+├── Dockerfile          # Multi-stage Docker build
+├── docker-compose.yml  # Docker services configuration
+├── jest.config.js      # Jest testing configuration
+├── package.json        # Project dependencies
+└── tsconfig.json       # TypeScript configuration
 ```
 
 ## API Endpoints

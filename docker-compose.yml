@@ -1,0 +1,47 @@
+# Docker Compose configuration for DevOps API
+# This file defines three services:
+# 1. test - For running tests in isolation
+# 2. api - Production environment
+# 3. mongodb - Database service used by both environments
+
+version: '3.8'
+
+services:
+  # Test environment
+  # Used for running tests with MongoDB integration
+  test:
+    build:
+      context: .
+      target: test
+    environment:
+      - NODE_ENV=test
+      - MONGODB_URI=mongodb://mongodb:27017/test
+    depends_on:
+      - mongodb
+
+  # Production environment
+  # Runs the API with production settings
+  api:
+    build:
+      context: .
+      target: production
+    ports:
+      - "3000:3000"  # Maps container port 3000 to host port 3000
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/production
+    depends_on:
+      - mongodb
+
+  # MongoDB service
+  # Persistent database used by both test and production environments
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"  # Maps container port 27017 to host port 27017
+    volumes:
+      - mongodb_data:/data/db  # Persists database data
+
+# Named volumes for data persistence
+volumes:
+  mongodb_data:  # MongoDB data storage 
