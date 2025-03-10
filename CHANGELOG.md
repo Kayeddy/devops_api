@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2024-03-10
+
+### Fixed
+- Resolved dependency conflicts in package.json
+- Updated mongoose to version 7.5.0 for better compatibility
+- Fixed mongodb-memory-server version mismatch
+- Regenerated package-lock.json with correct dependencies
+
 ## [1.1.0] - 2024-03-10
 
 ### Added
