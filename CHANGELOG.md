@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.5] - 2024-03-10
+
+### Changed
+- Modified Dockerfile to use .env.example instead of .env
+- Improved Docker build process for environment configuration
+
 ## [1.1.4] - 2024-03-10
 
 ### Added

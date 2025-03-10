@@ -54,7 +54,9 @@ RUN npm ci --only=production
 
 # Copy compiled JavaScript from builder
 COPY --from=builder /app/dist ./dist
-COPY .env ./
+
+# Copy and rename environment file
+COPY .env.example ./.env
 
 # Expose API port
 EXPOSE 3000
