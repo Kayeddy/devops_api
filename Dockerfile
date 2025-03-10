@@ -35,10 +35,10 @@ COPY jest.config.js ./
 # Install all dependencies including devDependencies
 RUN npm ci
 
-# Copy source code from builder
-COPY --from=builder /app/src ./src
+# Copy source code and tests
+COPY src/ ./src/
 
-# Run tests by default
+# Run tests by default with coverage
 CMD ["npm", "test"]
 
 # Production stage - Minimal image for running the application
