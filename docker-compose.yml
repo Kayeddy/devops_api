@@ -1,59 +1,106 @@
 # Docker Compose configuration for DevOps API
-# This file defines three services:
+# This file orchestrates multiple containerized services that work together.
+# It defines the application stack with proper networking, volumes, and dependencies.
+# The configuration includes three main services:
 # 1. test - For running tests in isolation
 # 2. api - Production environment
 # 3. mongodb - Database service used by both environments
 
+# Docker Compose file format version
+# Version 3.8 supports the latest features while maintaining compatibility
 version: '3.8'
 
 services:
-  # Test environment
-  # Used for running tests with MongoDB integration
+  #######################
+  # TEST SERVICE
+  #######################
+  # Dedicated environment for running automated tests
+  # Isolates testing from production to prevent data corruption
   test:
+    # Build configuration specifies how to build this service's image
     build:
+      # The build context is the current directory (where docker-compose.yml is located)
       context: .
+      # Uses only the 'test' stage from the multi-stage Dockerfile
       target: test
+    # Environment variables passed to the container
     environment:
+      # Sets Node.js to test mode, affecting various behaviors
       - NODE_ENV=test
+      # MongoDB connection string pointing to the mongodb service
+      # Uses the service name 'mongodb' as the hostname (Docker networking feature)
       - MONGODB_URI=mongodb://mongodb:27017/test
+      # Passes CI environment variable from host to container, defaulting to false
+      # This allows different behavior when running in CI environments
       - CI=${CI:-false}
+    # Ensures MongoDB is started before this service
     depends_on:
       - mongodb
+    # Connects this service to the app-network for communication with other services
     networks:
       - app-network
 
-  # Production environment
-  # Runs the API with production settings
+  #######################
+  # API SERVICE
+  #######################
+  # Production-ready API service that serves the application
   api:
     build:
       context: .
+      # Uses only the 'production' stage from the multi-stage Dockerfile
+      # This results in a smaller, optimized container without development tools
       target: production
+    # Port mapping from host to container
+    # External requests to port 3000 on the host are forwarded to port 3000 in the container
     ports:
-      - "3000:3000"  # Maps container port 3000 to host port 3000
+      - "3000:3000"
+    # Production environment variables
     environment:
       - NODE_ENV=production
+      # MongoDB connection string for production database
       - MONGODB_URI=mongodb://mongodb:27017/production
+    # Ensures MongoDB is started before this service
     depends_on:
       - mongodb
     networks:
       - app-network
 
-  # MongoDB service
-  # Persistent database used by both test and production environments
+  #######################
+  # MONGODB SERVICE
+  #######################
+  # Database service used by both test and production environments
   mongodb:
+    # Uses the official MongoDB 6.0 image from Docker Hub
+    # Version 6.0 is specified for stability and compatibility
     image: mongo:6.0
+    # Exposes MongoDB port to the host for direct access if needed
+    # Useful for connecting external tools like MongoDB Compass
     ports:
-      - "27017:27017"  # Maps container port 27017 to host port 27017
+      - "27017:27017"
+    # Persistent storage for database data
+    # Data will survive container restarts and rebuilds
     volumes:
-      - mongodb_data:/data/db  # Persists database data
+      - mongodb_data:/data/db
     networks:
       - app-network
 
-# Named volumes for data persistence
+#######################
+# VOLUMES
+#######################
+# Named volumes for persistent data storage
+# These volumes exist outside of containers and persist between container lifecycles
 volumes:
-  mongodb_data:  # MongoDB data storage
+  # Volume for MongoDB data
+  # Prevents data loss when containers are removed or recreated
+  mongodb_data:
 
-# Custom network for service isolation
+#######################
+# NETWORKS
+#######################
+# Custom networks for service isolation and communication
 networks:
+  # Network that connects all services
+  # Allows services to communicate using their service names as hostnames
   app-network:
+    # Bridge driver is the standard network driver for container communication
     driver: bridge 

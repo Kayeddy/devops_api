@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-03-10
+
+### Added
+- Enhanced documentation for Dockerfile with detailed explanations for each section and command
+- Improved docker-compose.yml documentation with comprehensive comments for better understanding
+- Added section headers and detailed descriptions for Docker configuration components
+
 ## [1.1.9] - 2024-03-10
 
 ### Fixed
