@@ -5,7 +5,7 @@
 # 3. Production - Minimal image with only production dependencies
 
 # Build stage - Compiles TypeScript code
-FROM node:18-alpine as builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY package*.json ./
 COPY tsconfig.json ./
 
 # Install all dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -23,7 +23,7 @@ COPY . .
 RUN npm run build
 
 # Test stage - Runs tests with coverage
-FROM node:18-alpine as test
+FROM node:18-alpine AS test
 
 WORKDIR /app
 
@@ -33,7 +33,7 @@ COPY tsconfig.json ./
 COPY jest.config.js ./
 
 # Install all dependencies including devDependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code and tests
 COPY src/ ./src/
@@ -42,7 +42,7 @@ COPY src/ ./src/
 CMD ["npm", "test"]
 
 # Production stage - Minimal image for running the application
-FROM node:18-alpine as production
+FROM node:18-alpine AS production
 
 WORKDIR /app
 
