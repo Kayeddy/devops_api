@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.7] - 2024-03-10
+
+### Fixed
+- GitHub Actions workflows now use lowercase repository names for Docker images
+- Fixed Docker image push errors in CI/CD pipelines
+
 ## [1.1.6] - 2024-03-10
 
 ### Fixed
