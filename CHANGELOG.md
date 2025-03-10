@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.9] - 2024-03-10
+
+### Fixed
+- Added explicit permissions for GitHub Actions workflows to access package registry
+- Fixed "installation not allowed to Create organization package" error in CI/CD pipelines
+
 ## [1.1.8] - 2024-03-10
 
 ### Fixed
