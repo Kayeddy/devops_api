@@ -7,7 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - YYYY-MM-DD
+## [1.1.0] - 2024-03-10
+
+### Added
+- Jest testing configuration
+- Test coverage thresholds (60% for development, 85% for production)
+- Docker containerization
+- CI/CD pipelines with GitHub Actions
+- Automated testing and building workflows
+- Container registry integration
+- Version control documentation
+
+### Changed
+- Updated CI pipeline to use Docker Buildx
+- Improved test execution in CI environment
+- Optimized Docker build caching
+- Enhanced GitHub Actions workflow reliability
+
+## [1.0.0] - 2024-03-10
 
 ### Added
 - Initial API setup with TypeScript and Express
@@ -17,15 +34,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Car collection with CRUD operations
 - Basic error handling and response formatting
 - Environment configuration
-- Development and production scripts
-
-## [1.1.0] - YYYY-MM-DD
-
-### Added
-- Jest testing configuration
-- Test coverage thresholds (60% for development, 85% for production)
-- Docker containerization
-- CI/CD pipelines with GitHub Actions
-- Automated testing and building workflows
-- Container registry integration
-- Version control documentation 
+- Development and production scripts 
