@@ -22,23 +22,23 @@ COPY . .
 # Build TypeScript code
 RUN npm run build
 
-# Test stage - Runs tests with coverage
-FROM node:18 AS test
+# Test stage only
+FROM node:18.19-bullseye AS test
 
 WORKDIR /app
 
-# Copy configuration files
+# Copy package files first
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY jest.config.js ./
 
-# Install all dependencies including devDependencies
-RUN npm install
+# Install dependencies with verbose output
+RUN npm install --verbose
 
 # Copy source code and tests
 COPY src/ ./src/
 
-# Run tests by default with coverage
+# Run tests
 CMD ["npm", "test"]
 
 # Production stage - Minimal image for running the application

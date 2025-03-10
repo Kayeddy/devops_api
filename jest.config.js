@@ -28,5 +28,6 @@ module.exports = {
     '/dist/',
     '/__tests__/helpers/'
   ],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testTimeout: 30000
 }; 
