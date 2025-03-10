@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] - 2024-03-10
+
+### Added
+- Email validation in User model with custom error messages
+- TypeScript type safety improvements for validation
+
+### Fixed
+- User model now properly validates email format
+- All tests passing with 100% coverage
+
 ## [1.1.2] - 2024-03-10
 
 ### Fixed
