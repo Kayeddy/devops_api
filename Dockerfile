@@ -23,7 +23,7 @@ COPY . .
 RUN npm run build
 
 # Test stage - Runs tests with coverage
-FROM node:18-alpine AS test
+FROM node:18 AS test
 
 WORKDIR /app
 

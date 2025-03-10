@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.6] - 2024-03-10
+
+### Fixed
+- Test stage in Dockerfile now uses Debian-based Node.js image for MongoDB compatibility
+- Resolved mongodb-memory-server compatibility issues in Docker tests
+
 ## [1.1.5] - 2024-03-10
 
 ### Changed
