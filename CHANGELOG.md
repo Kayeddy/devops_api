@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.4] - 2024-03-10
+
+### Added
+- Environment configuration file (.env) for Docker builds
+- Default environment variables for development and production
+
+### Fixed
+- Docker build process by including required .env file
+- MongoDB connection configuration for different environments
+
 ## [1.1.3] - 2024-03-10
 
 ### Added
