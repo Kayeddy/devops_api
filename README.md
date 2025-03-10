@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DevOps API
 
 A TypeScript-based REST API for managing users, bikes, and cars with full CI/CD pipeline integration.
@@ -142,3 +143,6 @@ git push origin v1.x.x
   "model": "Toyota Camry"
 }
 ``` 
+=======
+# devops_api
+>>>>>>> f63f17fb1ba271fdbd4394070461e0ec8f629384
