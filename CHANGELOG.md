@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2023-11-18
+
+### Changed
+- Made health endpoint independent of MongoDB connection
+- Enhanced logging for health endpoint
+- Improved application startup to ensure health endpoint is always available
+- Added version information to health endpoint response
+
+### Fixed
+- Fixed Railway deployment healthcheck failures
+- Prevented application from exiting when MongoDB connection fails
+
 ## [1.3.2] - 2023-11-17
 
 ### Fixed
