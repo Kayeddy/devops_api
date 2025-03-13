@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.6] - 2023-11-21
+
+### Changed
+- Consolidated all GitHub Actions workflows into a single main.yml file
+- Simplified CI/CD pipeline structure
+- Improved version extraction and tagging for Docker images
+
+### Fixed
+- Fixed persistent "Project Token not found" error in GitHub Actions
+- Removed all references to Railway CLI deployment
+- Ensured complete compatibility with Railway's automatic deployment
+
 ## [1.3.5] - 2023-11-20
 
 ### Changed
