@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.8] - 2023-11-23
+
+### Changed
+- Removed unnecessary deployment files to focus exclusively on Railway
+- Simplified deployment configuration
+
+### Removed
+- Deleted Procfile (Heroku-specific file)
+- Removed redundant railway.toml file
+- Cleaned up temporary workflow scripts (debug-workflows.js, cleanup-workflows.js)
+
 ## [1.3.7] - 2023-11-22
 
 ### Changed

@@ -30,6 +30,18 @@ Railway is configured to:
 - Use the appropriate environment variables
 - Provide health monitoring and logging
 
+## Configuration Files
+
+The project uses the following Railway-specific configuration files:
+
+1. **railway.json**: Defines the build and deployment configuration
+   - Uses Dockerfile for building
+   - Configures health checks at `/health`
+   - Sets restart policies
+
+2. **.railwayignore**: Specifies files that should be ignored during deployment
+   - Excludes test files, documentation, and development configs
+
 ## Important Notes
 
 1. **No Railway CLI**: We do not use the Railway CLI in our workflows. Railway's GitHub integration handles deployments automatically.
