@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2023-11-16
+
+### Fixed
+- Updated Railway deployment GitHub Action to use the current recommended approach
+- Fixed "Missing download info for railway/railway-github-action@v1" error
+- Replaced outdated Railway GitHub Action with direct Railway CLI usage
+- Improved deployment workflow reliability
+
 ## [1.3.0] - 2023-11-15
 
 ### Added
