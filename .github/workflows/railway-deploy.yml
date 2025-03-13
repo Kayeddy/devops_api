@@ -30,10 +30,10 @@ jobs:
           CI: true
           MONGODB_URI: mongodb://localhost:27017/test
       
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+      
       - name: Deploy to Railway
-        uses: railway/railway-github-action@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: devops-api
-          environment: production
-          command: up 
+        run: railway up --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }} 
