@@ -725,6 +725,161 @@ For easier testing, you can import a Postman collection:
 
 This will give you a reusable collection of API requests for testing.
 
+## Testing the Railway-Deployed API
+
+This section provides guidance on testing the API after it has been deployed to Railway using Postman.
+
+### Finding Your Railway API URL
+
+Before testing, you need to locate your API's URL:
+
+1. Log in to your [Railway dashboard](https://railway.app/dashboard)
+2. Select your DevOps API project
+3. Go to the "Deployments" tab
+4. Find your latest successful deployment
+5. Look for the "Generated Domain" (e.g., `https://devops-api-production.up.railway.app`)
+
+This is the base URL for all API requests.
+
+### Setting Up Postman for Railway Testing
+
+1. **Create a New Environment**:
+   - Open Postman and create a new environment named "Railway"
+   - Add a variable named `base_url` with your Railway-generated domain
+   - Save the environment and select it
+
+2. **Create a Collection**:
+   - Create a new collection named "DevOps API - Railway"
+   - Organize requests into folders by resource (Users, Bikes, Cars)
+
+3. **Test Health Endpoint First**:
+   - Create a GET request to `{{base_url}}/health`
+   - This confirms the API is running correctly before testing other endpoints
+
+### Example Requests for Testing
+
+#### Users Endpoints
+
+**Get All Users**:
+- Method: GET
+- URL: `{{base_url}}/api/users`
+
+**Create a User**:
+- Method: POST
+- URL: `{{base_url}}/api/users`
+- Body (raw JSON):
+```json
+{
+  "name": "Test User",
+  "email": "test@example.com"
+}
+```
+
+**Get User by ID**:
+- Method: GET
+- URL: `{{base_url}}/api/users/:id` (replace with actual ID)
+
+**Update User**:
+- Method: PUT
+- URL: `{{base_url}}/api/users/:id`
+- Body (raw JSON):
+```json
+{
+  "name": "Updated User",
+  "email": "updated@example.com"
+}
+```
+
+**Delete User**:
+- Method: DELETE
+- URL: `{{base_url}}/api/users/:id`
+
+#### Bikes Endpoints
+
+**Get All Bikes**:
+- Method: GET
+- URL: `{{base_url}}/api/bikes`
+
+**Create a Bike**:
+- Method: POST
+- URL: `{{base_url}}/api/bikes`
+- Body (raw JSON):
+```json
+{
+  "name": "Mountain Bike",
+  "model": "Trek X-Caliber 8"
+}
+```
+
+**Get Bike by ID**:
+- Method: GET
+- URL: `{{base_url}}/api/bikes/:id`
+
+#### Cars Endpoints
+
+**Get All Cars**:
+- Method: GET
+- URL: `{{base_url}}/api/cars`
+
+**Create a Car**:
+- Method: POST
+- URL: `{{base_url}}/api/cars`
+- Body (raw JSON):
+```json
+{
+  "name": "Sedan",
+  "model": "Toyota Camry"
+}
+```
+
+**Get Car by ID**:
+- Method: GET
+- URL: `{{base_url}}/api/cars/:id`
+
+### Troubleshooting Railway Deployments
+
+If you encounter issues when testing:
+
+1. **Check Railway Logs**:
+   - Go to the Railway dashboard
+   - Select your deployment
+   - Click on "Logs" to view any error messages
+
+2. **Verify Environment Variables**:
+   - Ensure `MONGODB_URI` is correctly set in Railway
+   - Check that `PORT` is set to 3000 (or the port your app uses)
+
+3. **Test Database Connection**:
+   - If API endpoints fail but health check works, there may be a MongoDB connection issue
+   - Check MongoDB Atlas dashboard to ensure the database is accessible
+
+4. **Check Network Rules**:
+   - Ensure MongoDB Atlas network access allows connections from Railway's IP range
+   - For testing, you can temporarily allow access from anywhere (0.0.0.0/0)
+
+5. **Inspect Response Headers**:
+   - Use Postman's response headers to identify any issues with CORS or other configuration problems
+
+### Advanced Testing Techniques
+
+1. **Create Test Sequences**:
+   - Use Postman's Collection Runner to test endpoints in sequence
+   - Create a flow that tests creating, retrieving, updating, and deleting resources
+
+2. **Write Test Scripts**:
+   - Add JavaScript test scripts in Postman to validate responses
+   - Example: Verify that a created user has the correct name and email
+
+3. **Environment Variables for Test Data**:
+   - Store IDs of created resources as environment variables
+   - Use these variables in subsequent requests (e.g., GET /users/:id)
+
+4. **Automate Testing**:
+   - Export your Postman collection and use Newman to run tests in CI/CD pipeline
+   - This ensures API functionality after each deployment
+
+By following these guidelines, you can thoroughly test your Railway-deployed API and ensure it functions correctly in the production environment.
+
 ---
 
 # Potential Questions and Answers
