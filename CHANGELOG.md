@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.4] - 2023-11-19
+
+### Changed
+- Improved MongoDB connection error handling
+- Enhanced logging for MongoDB connection attempts
+- Removed fallback to localhost MongoDB in Railway environment
+
+### Fixed
+- Fixed MongoDB connection issues in Railway environment
+- Added better error messages for missing MongoDB URI
+
 ## [1.3.3] - 2023-11-18
 
 ### Changed

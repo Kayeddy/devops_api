@@ -24,7 +24,7 @@ app.get('/health', (req, res) => {
     message: 'API is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    version: '1.3.2'
+    version: '1.3.4'
   });
 });
 

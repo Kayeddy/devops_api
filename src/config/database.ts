@@ -5,7 +5,15 @@ dotenv.config();
 
 const connectDB = async (): Promise<void> => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/devops_api';
+    // Get MongoDB URI from environment variables
+    const mongoURI = process.env.MONGODB_URI;
+    
+    // Log connection attempt
+    console.log(`Attempting to connect to MongoDB at ${mongoURI ? mongoURI.split('@')[1] || 'configured URI' : 'undefined URI'}`);
+    
+    if (!mongoURI) {
+      throw new Error('MONGODB_URI environment variable is not defined');
+    }
     
     // Add connection options to handle Railway deployment
     const options = {
@@ -22,8 +30,8 @@ const connectDB = async (): Promise<void> => {
     console.log('MongoDB connected successfully');
   } catch (error) {
     console.error('MongoDB connection error:', error);
-    // Exit process with failure
-    process.exit(1);
+    // Don't exit process with failure - let the app continue in limited mode
+    throw error;
   }
 };
 
