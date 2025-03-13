@@ -60,8 +60,8 @@ jobs:
         docker push $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:latest
     
-    # Notify Railway about the new version (optional)
-    - name: Notify Railway about new version
+    # Notify about the new version
+    - name: Notify about new version
       run: |
         echo "New version $VERSION has been published to GitHub Container Registry"
         echo "Railway will automatically deploy this version based on repository integration" 

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.5] - 2023-11-20
+
+### Changed
+- Removed Railway CLI deployment steps from GitHub Actions workflows
+- Renamed railway-deploy.yml to test-and-build.yml to better reflect its purpose
+- Simplified CI/CD pipeline to work with Railway's automatic deployments
+
+### Fixed
+- Fixed "Project Token not found" error in GitHub Actions
+- Aligned GitHub Actions workflows with Railway's GitHub integration
+
 ## [1.3.4] - 2023-11-19
 
 ### Changed
