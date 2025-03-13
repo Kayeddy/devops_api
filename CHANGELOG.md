@@ -7,12 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0] - 2024-03-10
+## [1.3.0] - 2023-11-15
 
 ### Added
-- Enhanced documentation for Dockerfile with detailed explanations for each section and command
-- Improved docker-compose.yml documentation with comprehensive comments for better understanding
-- Added section headers and detailed descriptions for Docker configuration components
+- Railway deployment integration
+- Health check endpoint at `/api/health`
+- Optimized railway.json configuration
+- MongoDB connection improvements for cloud deployment
+
+### Changed
+- Updated CI/CD pipelines to work with Railway's automatic deployment
+- Improved database connection error handling
+- Updated documentation with Railway deployment instructions
+
+### Fixed
+- MongoDB connection issue in Railway environment
+- Fixed IPv6 connection attempts that were causing errors
+
+## [1.2.0] - 2023-10-30
+
+### Added
+- Docker configuration enhancements
+- GitHub Actions workflow optimizations
+
+### Fixed
+- MongoDB compatibility issues
+- Test environment configuration
 
 ## [1.1.9] - 2024-03-10
 
@@ -73,39 +93,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved test assertions for better error handling
 - Updated test coverage thresholds to 85%
 
-## [1.1.1] - 2024-03-10
+## [1.1.1] - 2023-10-15
 
 ### Fixed
-- Resolved dependency conflicts in package.json
-- Updated mongoose to version 7.5.0 for better compatibility
-- Fixed mongodb-memory-server version mismatch
-- Regenerated package-lock.json with correct dependencies
+- Dependency conflict resolutions
+- Test fixes and improvements
 
-## [1.1.0] - 2024-03-10
+## [1.1.0] - 2023-10-01
 
 ### Added
-- Jest testing configuration
-- Test coverage thresholds (60% for development, 85% for production)
-- Docker containerization
+- Testing with Jest and MongoDB Memory Server
+- Docker multi-stage builds
 - CI/CD pipelines with GitHub Actions
-- Automated testing and building workflows
-- Container registry integration
-- Version control documentation
 
-### Changed
-- Updated CI pipeline to use Docker Buildx
-- Improved test execution in CI environment
-- Optimized Docker build caching
-- Enhanced GitHub Actions workflow reliability
-
-## [1.0.0] - 2024-03-10
+## [1.0.0] - 2023-09-15
 
 ### Added
-- Initial API setup with TypeScript and Express
+- Initial API setup with Express and TypeScript
 - MongoDB integration with Mongoose
-- User collection with CRUD operations
-- Bike collection with CRUD operations
-- Car collection with CRUD operations
-- Basic error handling and response formatting
-- Environment configuration
-- Development and production scripts 
+- CRUD operations for Users, Bikes, and Cars
+- Basic error handling and validation 

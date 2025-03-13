@@ -81,9 +81,48 @@ Run the container:
 docker run -p 3000:3000 --env-file .env devops-api
 ```
 
-## CI/CD Pipeline
+## Deployment
 
-This project uses GitHub Actions for continuous integration and deployment.
+### Railway Deployment
+
+This project is configured for automatic deployment through Railway's GitHub integration:
+
+1. **Setup (Already Completed)**:
+   - Created an account at [Railway](https://railway.app)
+   - Connected the GitHub repository directly in Railway dashboard
+   - Set up environment variables in Railway dashboard:
+     - `PORT`: 3000
+     - `MONGODB_URI`: your_mongodb_connection_string (see MongoDB Atlas setup below)
+
+2. **Automatic Deployment**:
+   - Every push to the `main` branch triggers automatic deployment
+   - New version tags (v*) also trigger deployment
+   - Railway handles the build and deployment process automatically
+
+3. **Monitoring and Logs**:
+   - View logs in the Railway dashboard
+   - Monitor application performance and resource usage
+   - Health check endpoint available at `/api/health`
+
+4. **Custom Domain (Optional)**:
+   - Configure a custom domain in the Railway dashboard
+   - Railway provides automatic HTTPS certificates
+
+### MongoDB Atlas Setup
+
+For the database, we use MongoDB Atlas free tier:
+
+1. Create a free MongoDB Atlas account at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+2. Create a free cluster
+3. Configure network access to allow connections from anywhere (0.0.0.0/0)
+4. Create a database user with read/write permissions
+5. Get your connection string and add it as `MONGODB_URI` in Railway environment variables
+
+For detailed setup instructions, see [MongoDB Atlas Setup Guide](docs/mongodb-atlas-setup.md).
+
+### CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration:
 
 ### CI Pipeline (on push to main and pull requests)
 - Runs tests in Docker environment

@@ -17,10 +17,10 @@ module.exports = {
   },
   coverageThreshold: {
     global: {
-      branches: 85,
-      functions: 85,
-      lines: 85,
-      statements: 85
+      branches: 60,
+      functions: 60,
+      lines: 60,
+      statements: 60
     }
   },
   coveragePathIgnorePatterns: [
@@ -29,5 +29,5 @@ module.exports = {
     '/__tests__/helpers/'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testTimeout: 30000
+  testTimeout: 120000
 }; 

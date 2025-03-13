@@ -87,8 +87,7 @@ COPY --from=builder /app/dist ./dist
 # This provides default configuration for the application
 COPY .env.example ./.env
 
-# Document that the container listens on port 3000
-# This doesn't actually publish the port, but serves as documentation
+# The container listens on port 3000
 EXPOSE 3000
 
 # Command to start the application

@@ -73,4 +73,10 @@ jobs:
           ghcr.io/${{ env.REPO_NAME }}/devops_api:latest
           ghcr.io/${{ env.REPO_NAME }}/devops_api:${{ github.sha }}
         cache-from: type=gha
-        cache-to: type=gha,mode=max 
+        cache-to: type=gha,mode=max
+        
+    # Notify about successful build
+    - name: Notify about successful build
+      run: |
+        echo "Docker image has been built and pushed to GitHub Container Registry"
+        echo "Railway will automatically deploy this version based on repository integration" 
