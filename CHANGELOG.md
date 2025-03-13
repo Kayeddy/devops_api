@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2023-11-17
+
+### Fixed
+- Updated Railway healthcheck path to use the root-level `/health` endpoint
+- Fixed Railway deployment healthcheck failure
+- Ensured proper health monitoring for deployed application
+
 ## [1.3.1] - 2023-11-16
 
 ### Fixed
