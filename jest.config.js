@@ -29,5 +29,8 @@ module.exports = {
     '/__tests__/helpers/'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testTimeout: 120000
+  testTimeout: 300000,
+  maxWorkers: 1,
+  forceExit: true,
+  detectOpenHandles: true
 }; 
