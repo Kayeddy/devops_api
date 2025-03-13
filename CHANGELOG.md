@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.9] - 2023-11-24
+
+### Added
+- Comprehensive Railway API testing guide with Postman to project overview
+- Detailed examples for testing all API endpoints
+- Troubleshooting section for Railway deployments
+- Advanced testing techniques for API validation
+
 ## [1.3.8] - 2023-11-23
 
 ### Changed
