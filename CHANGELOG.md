@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.2] - 2023-11-27
+
+### Added
+- Added Railway URL information to README.md for accessing the API globally
+- Documented the public API endpoints with examples
+
+### Changed
+- Excluded DevOps_API_Overview.md from Git repository for privacy
+- Updated health check endpoint path in documentation from `/api/health` to `/health`
+
 ## [1.4.1] - 2023-11-26
 
 ### Changed
