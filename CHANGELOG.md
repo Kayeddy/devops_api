@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.4] - 2025-03-13
+
+### Fixed
+- Fixed port configuration to match Railway's expected port (changed default from 3000 to 8080)
+- Resolved 502 Bad Gateway errors when accessing API endpoints
+
 ## [1.4.3] - 2025-03-13
 
 ### Fixed
