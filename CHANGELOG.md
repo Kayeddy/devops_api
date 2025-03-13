@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.3] - 2025-03-13
+
+### Fixed
+- Fixed MongoDB connection issue in Railway deployment by updating documentation to emphasize the need for including the database name in the connection string
+- Updated MongoDB Atlas setup guide with more detailed instructions on connection string format
+- Added troubleshooting section for common MongoDB connection issues
+
 ## [1.4.2] - 2023-11-27
 
 ### Added

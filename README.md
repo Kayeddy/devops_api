@@ -123,6 +123,9 @@ For the database, we use MongoDB Atlas free tier:
 3. Configure network access to allow connections from anywhere (0.0.0.0/0)
 4. Create a database user with read/write permissions
 5. Get your connection string and add it as `MONGODB_URI` in Railway environment variables
+   - **IMPORTANT**: Make sure to include the database name in your connection string:
+   - Format: `mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/devops_api?retryWrites=true&w=majority`
+   - The database name (`devops_api` in this example) must be added between the hostname and the question mark
 
 For detailed setup instructions, see [MongoDB Atlas Setup Guide](docs/mongodb-atlas-setup.md).
 
