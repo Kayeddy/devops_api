@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2023-11-25
+
+### Added
+- Created separate CI and CD pipelines with different coverage thresholds (60% for CI, 85% for CD)
+- Added MongoDB binary caching in GitHub Actions to improve test performance
+
+### Changed
+- Increased Jest timeout to 5 minutes (300000ms) for all tests
+- Updated MongoDB Memory Server configuration for better stability
+- Improved error handling in database test helpers
+
+### Fixed
+- Fixed MongoDB Memory Server timeout issues in GitHub Actions
+- Added explicit timeouts to all test hooks and test cases
+- Resolved "Cannot read properties of undefined (reading 'stop')" error in dbHandler.ts
+- Fixed "Operation buffering timed out" errors in Mongoose operations
+
 ## [1.3.9] - 2023-11-24
 
 ### Added
