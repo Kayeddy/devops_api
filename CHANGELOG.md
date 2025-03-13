@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2023-11-26
+
+### Changed
+- Removed redundant consolidated.yml workflow file
+- Simplified GitHub Actions configuration to use only separate CI and CD pipelines
+
 ## [1.4.0] - 2023-11-25
 
 ### Added
