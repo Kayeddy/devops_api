@@ -99,12 +99,18 @@ This project is configured for automatic deployment through Railway's GitHub int
    - New version tags (v*) also trigger deployment
    - Railway handles the build and deployment process automatically
 
-3. **Monitoring and Logs**:
+3. **Accessing the Deployed API**:
+   - The API is publicly accessible at: [https://devopsapi-production.up.railway.app](https://devopsapi-production.up.railway.app)
+   - Base URL for all API requests: `https://devopsapi-production.up.railway.app`
+   - Health check endpoint: `https://devopsapi-production.up.railway.app/health`
+   - Example API endpoint: `https://devopsapi-production.up.railway.app/api/users`
+
+4. **Monitoring and Logs**:
    - View logs in the Railway dashboard
    - Monitor application performance and resource usage
-   - Health check endpoint available at `/api/health`
+   - Health check endpoint available at `/health`
 
-4. **Custom Domain (Optional)**:
+5. **Custom Domain (Optional)**:
    - Configure a custom domain in the Railway dashboard
    - Railway provides automatic HTTPS certificates
 
