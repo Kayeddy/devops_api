@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Azure Service Bus queue listener service for message processing
+- Integration with existing MongoDB collections (users, bikes, cars)
+- Automatic queue listener startup after MongoDB connection
+- Environment variable configuration for Azure Service Bus in Railway
+
+### Changed
+- Updated app.ts to initialize queue listener after MongoDB connection
+- Added new dependencies for Azure Service Bus and axios
+
 ## [1.4.4] - 2025-03-13
 
 ### Fixed

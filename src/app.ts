@@ -6,6 +6,7 @@ import userRoutes from './routes/userRoutes';
 import bikeRoutes from './routes/bikeRoutes';
 import carRoutes from './routes/carRoutes';
 import healthRoutes from './routes/healthRoutes';
+import { startQueueListener } from './services/queueListener';
 
 dotenv.config();
 
@@ -39,9 +40,11 @@ const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// Connect to MongoDB
+// Connect to MongoDB and start queue listener
 connectDB().then(() => {
   console.log('MongoDB connected successfully, API is fully operational');
+  // Start queue listener after successful database connection
+  startQueueListener();
 }).catch((error) => {
   console.error('Failed to connect to MongoDB:', error);
   // Don't exit the process, let the health endpoint still work
