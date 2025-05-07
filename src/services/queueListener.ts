@@ -3,11 +3,11 @@ import axios from 'axios';
 import User from '../models/User';
 import Bike from '../models/Bike';
 import Car from '../models/Car';
+import { Request, Response } from 'express';
 
 dotenv.config();
 
 // Coordinator endpoints 
-const coordinatorFetchUrl = process.env.COORDINATOR_FETCH_URL || 'https://pedidos2-2.onrender.com/api/v2/subscription/coordinador';
 const coordinatorSendUrl = process.env.COORDINATOR_SEND_URL || 'https://pedidos2-2.onrender.com/api/v2/send-message';
 
 interface EnrichedMessage {
@@ -31,17 +31,6 @@ const fetchFullData = async () => {
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;
-  }
-};
-
-const pollCoordinator = async () => {
-  // Poll the coordinator for new messages
-  try {
-    const response = await axios.get(coordinatorFetchUrl);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching message from coordinator:', error);
-    return null;
   }
 };
 
@@ -73,36 +62,34 @@ const sendToCoordinator = async (message: any, withFailFlag: boolean) => {
 // State: 'waiting' -> 'failSent' -> 'done'
 let sendState: 'waiting' | 'failSent' | 'done' = 'waiting';
 
-const start = async () => {
-  console.log(`Polling coordinator at '${coordinatorFetchUrl}' for messages...`);
-  setInterval(async () => {
-    if (sendState === 'done') return; // Stop after both sends
-    const message = await pollCoordinator();
-    if (!message) return;
-    console.log('Message received from coordinator:', message);
-    try {
-      const data = await fetchFullData();
-      message.data = {
-        step3: {
-          timestamp: new Date().toISOString(),
-          ...data
-        }
-      };
-      if (sendState === 'waiting') {
-        // First reply: send with fail flag
-        await sendToCoordinator(message, true);
-        sendState = 'failSent';
-      } else if (sendState === 'failSent') {
-        // Second reply: send without fail flag
-        await sendToCoordinator(message, false);
-        sendState = 'done';
+/**
+ * Express handler for coordinator webhook
+ */
+export const coordinatorWebhookHandler = async (req: Request, res: Response) => {
+  if (sendState === 'done') {
+    return res.status(200).json({ status: 'done', message: 'No further action taken.' });
+  }
+  const message = req.body;
+  console.log('Webhook message received from coordinator:', message);
+  try {
+    const data = await fetchFullData();
+    message.data = {
+      step3: {
+        timestamp: new Date().toISOString(),
+        ...data
       }
-    } catch (err) {
-      console.error('Error processing or forwarding message:', err);
+    };
+    if (sendState === 'waiting') {
+      await sendToCoordinator(message, true);
+      sendState = 'failSent';
+      return res.status(200).json({ status: 'failSent', message: 'Sent with fail flag.' });
+    } else if (sendState === 'failSent') {
+      await sendToCoordinator(message, false);
+      sendState = 'done';
+      return res.status(200).json({ status: 'done', message: 'Sent without fail flag.' });
     }
-  }, 5000); // Poll every 5 seconds
-};
-
-export const startQueueListener = () => {
-  start().catch(console.error);
+  } catch (err) {
+    console.error('Error processing or forwarding message:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }; 
