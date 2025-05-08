@@ -4,6 +4,7 @@ import User from '../models/User';
 import Bike from '../models/Bike';
 import Car from '../models/Car';
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -16,6 +17,10 @@ interface EnrichedMessage {
 
 const fetchFullData = async () => {
   try {
+    // Ensure mongoose is connected
+    if (mongoose.connection.readyState !== 1) {
+      throw new Error('MongoDB is not connected');
+    }
     // Fetch all collections
     const [users, bikes, cars] = await Promise.all([
       User.find({}),
