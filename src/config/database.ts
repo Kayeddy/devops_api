@@ -5,15 +5,11 @@ dotenv.config();
 
 const connectDB = async (): Promise<void> => {
   try {
-    // Get MongoDB URI from environment variables
-    const mongoURI = process.env.MONGODB_URI;
+    // Use hardcoded MongoDB URI
+    const mongoURI = 'mongodb+srv://kayeddy:1477@cluster0.crlf7.mongodb.net/devops_api?retryWrites=true&w=majority&appName=Cluster0';
     
     // Log connection attempt
-    console.log(`Attempting to connect to MongoDB at ${mongoURI ? mongoURI.split('@')[1] || 'configured URI' : 'undefined URI'}`);
-    
-    if (!mongoURI) {
-      throw new Error('MONGODB_URI environment variable is not defined');
-    }
+    console.log(`Attempting to connect to MongoDB at ${mongoURI.split('@')[1] || 'configured URI'}`);
     
     // Add connection options to handle Railway deployment
     const options = {
