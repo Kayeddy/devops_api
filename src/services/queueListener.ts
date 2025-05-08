@@ -5,6 +5,9 @@ import Bike from '../models/Bike';
 import Car from '../models/Car';
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { getAllUsers } from './userService';
+import { getAllBikes } from './bikeService';
+import { getAllCars } from './carService';
 
 dotenv.config();
 
@@ -21,18 +24,13 @@ const fetchFullData = async () => {
     if (mongoose.connection.readyState !== 1) {
       throw new Error('MongoDB is not connected');
     }
-    // Fetch all collections
+    // Fetch all collections using internal services
     const [users, bikes, cars] = await Promise.all([
-      User.find({}),
-      Bike.find({}),
-      Car.find({})
+      getAllUsers(),
+      getAllBikes(),
+      getAllCars()
     ]);
-
-    return {
-      users,
-      bikes,
-      cars
-    };
+    return { users, bikes, cars };
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;
