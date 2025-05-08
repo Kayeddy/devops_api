@@ -42,7 +42,7 @@ const fetchFullData = async () => {
 const sendToCoordinator = async (message: any, withFailFlag: boolean) => {
   // Send enriched message back to the coordinator
   try {
-    // Attach fail flag if needed
+    // Attach fail flag 
     if (withFailFlag) {
       message.failOn = 'queue-reprocessed';
       message.error = '';

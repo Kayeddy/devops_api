@@ -6,7 +6,7 @@ dotenv.config();
 const connectDB = async (): Promise<void> => {
   try {
     // Use hardcoded MongoDB URI
-    const mongoURI = 'mongodb+srv://kayeddy:1477@cluster0.crlf7.mongodb.net/devops_api?retryWrites=true&w=majority&appName=Cluster0';
+    const mongoURI = 'mongodb+srv://kayeddy:1477@cluster0.crlf7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
     
     // Log connection attempt
     console.log(`Attempting to connect to MongoDB at ${mongoURI.split('@')[1] || 'configured URI'}`);
