@@ -65,6 +65,19 @@ const sendToCoordinator = async (message: any, withFailFlag: boolean) => {
 // State: 'waiting' -> 'failSent' -> 'done'
 let sendState: 'waiting' | 'failSent' | 'done' = 'waiting';
 
+/**
+ * Reset the state to start a new message cycle
+ */
+export const resetState = (req: Request, res: Response) => {
+  const oldState = sendState;
+  sendState = 'waiting';
+  console.log(`State reset from '${oldState}' to 'waiting'`);
+  return res.status(200).json({ 
+    success: true, 
+    message: `State reset from '${oldState}' to 'waiting'` 
+  });
+};
+
 // Create a fallback response when DB connection fails
 const getFallbackData = () => {
   return {
